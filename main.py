@@ -4,7 +4,7 @@ import customtkinter as ctk
 #Main Class
 class Window(ctk.CTk):
     WIDTH = 700 
-    HEIGHT = 600
+    HEIGHT = 750
     
     def __init__(self) -> None:
         super().__init__()
@@ -27,13 +27,6 @@ class Window(ctk.CTk):
         #Far Left Frame
         self.frame_left.grid_rowconfigure(0, minsize=10)
 
-#------------#
-#Entries-----#
-#------------#
-        #Monster Name
-        monster_name_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter Name')
-        monster_name = monster_name_entry.get()
-
 #-----------#
 #Labels-----#
 #-----------#
@@ -43,8 +36,7 @@ class Window(ctk.CTk):
         monster_type_label = ctk.CTkLabel(master=self.frame_left, text="Monster Type Option")
         ac_type_label = ctk.CTkLabel(master=self.frame_left, text="AC Type Option")
         ac_value_label = ctk.CTkLabel(master=self.frame_left, text="AC Value Option")
-        hp_pool_label = ctk.CTkLabel(master=self.frame_left, text="HP Pool Option")
-        hp_value_label = ctk.CTkLabel(master=self.frame_left, text="Hp Value Option")
+        hp_value_label = ctk.CTkLabel(master=self.frame_left, text="HP Value Option")
         move_speed_label = ctk.CTkLabel(master=self.frame_left, text="Base Move Speed Option")
         extra_move_type_label = ctk.CTkLabel(master=self.frame_left, text="Extra Move Type Option")
         extra_move_speed_label = ctk.CTkLabel(master=self.frame_left, text="Extra Move Speed Option")
@@ -77,11 +69,9 @@ class Window(ctk.CTk):
         monster_type_display = ctk.CTkLabel(master=self.frame_right, text='')
         ac_type_display = ctk.CTkLabel(master=self.frame_right, text='')
         ac_value_display = ctk.CTkLabel(master=self.frame_right, text='')
-        hp_pool_display = ctk.CTkLabel(master=self.frame_right, text='')
         hp_value_display = ctk.CTkLabel(master=self.frame_right, text='')
         move_speed_display = ctk.CTkLabel(master=self.frame_right, text='')
-        extra_move_type_display = ctk.CTkLabel(master=self.frame_right, text='')
-        extra_move_speed_display = ctk.CTkLabel(master=self.frame_right, text='')
+        extra_move_display = ctk.CTkLabel(master=self.frame_right, text='')
         str_display = ctk.CTkLabel(master=self.frame_right, text='')
         dex_display = ctk.CTkLabel(master=self.frame_right, text='')
         con_display = ctk.CTkLabel(master=self.frame_right, text='')
@@ -103,6 +93,19 @@ class Window(ctk.CTk):
         legendary_action_display = ctk.CTkLabel(master=self.frame_right, text='')
         lair_action_display = ctk.CTkLabel(master=self.frame_right, text='')
         spells_display = ctk.CTkLabel(master=self.frame_right, text='')
+#------------#
+#Entries-----#
+#------------#
+        #Monster Name
+        monster_name_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter Name')
+        #AC Value
+        ac_value_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter AC Value')
+        #HP Value
+        hp_value_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter HP Value')
+        #Move Speed
+        move_speed_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter Move Speed')
+        #Extra Move Speed
+        extra_move_speed_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter Extra Move Speed')
 
 #---------------#        
 #Comboboxes-----#
@@ -116,24 +119,9 @@ class Window(ctk.CTk):
         #AC Type
         ac_type_combobox = ctk.CTkComboBox(master=self.frame_left, values=ac_type_options_combobox)
         ac_type_combobox.set("Random")
-        #AC Value
-        ac_value_combobox = ctk.CTkComboBox(master=self.frame_left, values=ac_value_options_combobox)
-        ac_value_combobox.set("Random") 
-        #TODO HP Pool
-        hp_pool_combobox = ctk.CTkComboBox(master=self.frame_left, values='hp_pool_options_combobox')
-        hp_pool_combobox.set("Random")
-        #TODO HP Value
-        hp_value_combobox = ctk.CTkComboBox(master=self.frame_left, values="hp_value_options_combobox")
-        hp_value_combobox.set("Random")
-        #Move Speed
-        move_speed_combobox = ctk.CTkComboBox(master=self.frame_left, values=move_speed_options_combobox)
-        move_speed_combobox.set("Random")
         #Extra Move Type
         extra_move_type_combobox = ctk.CTkComboBox(master=self.frame_left, values=extra_move_type_options_combobox)
         extra_move_type_combobox.set("Random")
-        #Extra Move Speed
-        extra_move_speed_combobox = ctk.CTkComboBox(master=self.frame_left, values=extra_move_speed_options_combobox)
-        extra_move_speed_combobox.set("Random")
         #STR
         str_combobox = ctk.CTkComboBox(master=self.frame_left, values=stats_options_combobox)
         str_combobox.set("Random")
@@ -203,21 +191,50 @@ class Window(ctk.CTk):
 #Functions-----#
 #--------------#
         #Monster Name 
-        create_monster_name(monster_name)
+        monster_name_command = lambda: add_monster_name(monster_name_entry, monster_name_display)
         #Size 
         size_command = lambda: add_size(size_combobox, size_display)
         #Monster Type
         monster_type_command = lambda: add_monster_type(monster_type_combobox, monster_type_display)
+        #AC Type
+        ac_type_command = lambda: add_ac_type(ac_type_combobox, ac_type_display)
+        #AC Value
+        ac_value_command = lambda: add_ac_value(ac_value_entry, ac_value_display)
+        #HP Value
+        hp_value_command = lambda: add_hp_value(hp_value_entry, hp_value_display)
+        #Move Speed
+        move_speed_command = lambda: add_move_speed(move_speed_entry, move_speed_display)
+        #Extra Move
+        extra_move_list = []
+        extra_move_command = lambda: add_extra_move(extra_move_type_combobox, extra_move_speed_entry, extra_move_display, extra_move_list)
+        #STR
+        str_command = lambda: add_stats(str_combobox, str_display)
+        #DEX
+        dex_command = lambda: add_stats(dex_combobox, dex_display)
 
 #------------#
 #Buttons-----#
 #------------#
         #Monster Name
-        pass
+        add_monster_name_btn =ctk.CTkButton(master=self.frame_left,text="+", command=monster_name_command, width=30)
         #Size
         add_size_btn = ctk.CTkButton(master=self.frame_left,command=size_command, text="+", width=30)
         #Monster Type
         add_monster_type_btn = ctk.CTkButton(master=self.frame_left, text="+", command=monster_type_command, width=30)
+        #AC Type
+        add_ac_type_btn = ctk.CTkButton(master=self.frame_left, text="+", command=ac_type_command, width=30)
+        #AC Value
+        add_ac_value_btn = ctk.CTkButton(master=self.frame_left, text="+", command=ac_value_command, width=30)
+        #HP 
+        add_hp_value_btn = ctk.CTkButton(master=self.frame_left, text="+", command=hp_value_command, width=30)
+        #Move Speed
+        add_move_speed_btn = ctk.CTkButton(master=self.frame_left, text="+", command=move_speed_command, width=30)
+        #Extra Move
+        add_extra_move_btn = ctk.CTkButton(master=self.frame_left, text="+", command=extra_move_command, width=30)
+        #STR
+        add_str_btn = ctk.CTkButton(master=self.frame_left, text="+", command=str_command, width=30)
+        #DEX
+        add_dex_btn = ctk.CTkButton(master=self.frame_left, text="+", command=dex_command, width=30)
 
 #----------------#        
 #Grid Layout-----#
@@ -227,14 +244,46 @@ class Window(ctk.CTk):
         #Row 0
         monster_name_label.grid(row=0, column=0)
         monster_name_entry.grid(row=0, column=1)
+        add_monster_name_btn.grid(row=0, column=2)
         #Row 1 
         size_label.grid(row=1, column=0)
         size_combobox.grid(row=1, column=1)
         add_size_btn.grid(row=1, column=2, sticky = "W")
         #Row 2
-        monster_type_label.grid(row=2,column=0)
+        monster_type_label.grid(row=2, column=0)
         monster_type_combobox.grid(row=2, column=1)
         add_monster_type_btn.grid(row=2, column=2, sticky = "W")
+        #Row 3 
+        ac_type_label.grid(row=3, column=0)
+        ac_type_combobox.grid(row=3, column=1)
+        add_ac_type_btn.grid(row=3, column=2)
+        #Row 4 
+        ac_value_label.grid(row=4, column=0)
+        ac_value_entry.grid(row=4, column=1)
+        add_ac_value_btn.grid(row=4, column=2)
+        #Row 5 
+        hp_value_label.grid(row=5, column=0)
+        hp_value_entry.grid(row=5, column=1)
+        add_hp_value_btn.grid(row=5, column=2)
+        #Row 6
+        move_speed_label.grid(row=6, column=0)
+        move_speed_entry.grid(row=6, column=1)
+        add_move_speed_btn.grid(row=6, column=2)
+        #Row 7
+        extra_move_type_label.grid(row=7, column=0)
+        extra_move_type_combobox.grid(row=7, column=1)
+        #Row 8
+        extra_move_speed_label.grid(row=8, column=0)
+        extra_move_speed_entry.grid(row=8, column=1)
+        add_extra_move_btn.grid(row=8, column=2)
+        #Row 9 
+        str_label.grid(row=9, column=0)
+        str_combobox.grid(row=9, column=1)
+        add_str_btn.grid(row=9, column=2)
+        #Row 10
+        dex_label.grid(row=10,column=0)
+        dex_combobox.grid(row=10, column=1)
+        add_dex_btn.grid(row=10, column=2)
 
 #RIGHT
         #Column 0 Labels
@@ -247,7 +296,20 @@ class Window(ctk.CTk):
         size_display.grid(row=1,column=1)
         #Row 2 
         monster_type_display.grid(row=2,column=1)
-
+        #Row 3
+        ac_type_display.grid(row=3, column=1)
+        #Row 4 
+        ac_value_display.grid(row=4, column=1)
+        #Row 5 
+        hp_value_display.grid(row=5, column=1)
+        #Row 6 
+        move_speed_display.grid(row=6, column=1)
+        #Row 7
+        extra_move_display.grid(row=7, column=1)
+        #Row 8 
+        str_display.grid(row=8, column=1)
+        #Row 9 
+        dex_display.grid(row=9, column=1)
 
         
 #Main Loop

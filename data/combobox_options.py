@@ -12,16 +12,6 @@ monster_type_options_combobox = ["Random","Aberration", "Beast",
                         ]
 #AC Type
 ac_type_options_combobox = ["Random", "Ancestral", "Magic", "Natural", "Worn"]
-#AC Value
-ac_value_options_combobox = ["Random",
-                    "7","8","9","10",
-                    "11","12","13","14",
-                    "15","16","17","18",
-                    "19","20","21","22",
-                    "23","24","25","26",
-                    ]
-#HP TODO
-pass
 
 #Move Speed
 move_speed_options_combobox = ["Random", 
@@ -32,7 +22,7 @@ move_speed_options_combobox = ["Random",
                             ]
 
 #Extra Move Type
-extra_move_type_options_combobox = ["Random", "None", "Burrow", "Climb", "Fly", "Swim"]
+extra_move_type_options_combobox = ["Random", "Burrow", "Climb", "Fly", "Swim"]
 
 #Extra Move Speed
 extra_move_speed_options_combobox = ["Random", 

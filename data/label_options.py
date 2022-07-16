@@ -1,6 +1,39 @@
+import random
+
 #-----------------#
 #-----LABELS------#
 #-----------------#
+#Monster Name
+monster_name_options_label = ['Vampmirage',
+                        'Soilbrute',
+                        'Cavehound',
+                        'Grievemask',
+                        'The Hollow Body',
+                        'The Jagged Glob',
+                        'The Calm Creature',
+                        'The Feral Assassin Leopard',
+                        'The Mad Tomb Leopard',
+                        'The Silver Berserker Freak',
+                        'Terrordeviation',
+                        'Glowghoul',
+                        'Infernalling',
+                        'Gasface',
+                        'The Feline Freak',
+                        'The Gruesome Glob',
+                        'The Lone Weirdo',
+                        'The Stalking Bane Wolf',
+                        'The Burnt Doom Snake',
+                        'The White-Eyed Doom Scorpion',
+                        'Dreamcrackle',
+                        'Caveghoul',
+                        'Plaguepest',
+                        'Flamestrike',
+                        'The Haunting Abomination',
+                        'The Bewitched Monstrosity',
+                        'The Gross Howler',
+                        'The Cold-Blooded Doom Phoenix',
+                        'The Sapphire Cinder Cobra',
+                        'The Ebon Army Fiend']
 #Size
 size_options_label = ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan"]
 #Monster Type
@@ -22,6 +55,9 @@ ac_value_options_label = [
                     "23","24","25","26",
                     ]
 
+# #HP Value
+# hp_value_options_label = random.randrange(2, 1000, 5)
+
 #Move Speed
 move_speed_options_label = [
                             "10 ft","20 ft","30 ft",
@@ -31,7 +67,7 @@ move_speed_options_label = [
                             ]
 
 #Extra Move Type
-extra_move_type_options_label = [ "None", "Burrow", "Climb", "Fly", "Swim"]
+extra_move_type_options_label = ["Burrow", "Climb", "Fly", "Swim"]
 
 #Extra Move Speed
 extra_move_speed_options_label = [ 

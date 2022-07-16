@@ -10,8 +10,8 @@ from data.label_options import *
 def add_monster_type(monster_type_combobox, monster_type_display):
     monster_type_choice = StringVar()
     monster_type_choice = monster_type_combobox.get()
-    monster_random_type = random.choice(monster_type_options_label)
+    monster_type_random = random.choice(monster_type_options_label)
     if monster_type_choice == "Random":
-        monster_type_display['text'] = monster_random_type
+        monster_type_display['text'] = monster_type_random
     else:
         monster_type_display['text'] = monster_type_choice
