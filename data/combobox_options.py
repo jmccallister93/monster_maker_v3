@@ -44,7 +44,7 @@ stats_options_combobox = [
         ]
 
 #Skills
-skill_options_combobox = ["Random","None","Acrobatics","Animal Handling",
+skill_type_options_combobox = ["Random","None","Acrobatics","Animal Handling",
                     "Arcana","Athletics","Deception",
                     "History","Insight","Intimidation",
                     "Investigation","Medicine","Nature",

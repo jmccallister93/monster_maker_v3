@@ -1,5 +1,6 @@
 from libraries import *
 import customtkinter as ctk
+import tkinter as tk
 
 #Main Class
 class Window(ctk.CTk):
@@ -46,8 +47,8 @@ class Window(ctk.CTk):
         int_label = ctk.CTkLabel(master=self.frame_left, text="INT Option")
         wis_label = ctk.CTkLabel(master=self.frame_left, text="WIS Option")
         cha_label = ctk.CTkLabel(master=self.frame_left, text="CHA Option")
-        skills_label = ctk.CTkLabel(master=self.frame_left, text="Skills Option")
-        skills_value_label = ctk.CTkLabel(master=self.frame_left, text="Skills Value Option")
+        skill_type_label = ctk.CTkLabel(master=self.frame_left, text="Skills Option")
+        skill_value_label = ctk.CTkLabel(master=self.frame_left, text="Skills Value Option")
         vuln_label = ctk.CTkLabel(master=self.frame_left, text="Vulnerability Option")
         immune_label = ctk.CTkLabel(master=self.frame_left, text="Immunity Option")
         cond_immune_label = ctk.CTkLabel(master=self.frame_left, text="Condition Immunity Option")
@@ -72,14 +73,14 @@ class Window(ctk.CTk):
         hp_value_display = ctk.CTkLabel(master=self.frame_right, text='')
         move_speed_display = ctk.CTkLabel(master=self.frame_right, text='')
         extra_move_display = ctk.CTkLabel(master=self.frame_right, text='')
-        str_display = ctk.CTkLabel(master=self.frame_right, text='')
+        str_display = tk.Label(master=self.frame_right, text='')
         dex_display = ctk.CTkLabel(master=self.frame_right, text='')
         con_display = ctk.CTkLabel(master=self.frame_right, text='')
         int_display = ctk.CTkLabel(master=self.frame_right, text='')
         wis_display = ctk.CTkLabel(master=self.frame_right, text='')
         cha_display = ctk.CTkLabel(master=self.frame_right, text='')
-        skills_display = ctk.CTkLabel(master=self.frame_right, text='')
-        skills_value_display = ctk.CTkLabel(master=self.frame_right, text='')
+        ability_scores_display = ctk.CTkLabel(master=self.frame_right, text='')
+        skill_display = ctk.CTkLabel(master=self.frame_right, text='')
         vuln_display = ctk.CTkLabel(master=self.frame_right, text='')
         immune_display = ctk.CTkLabel(master=self.frame_right, text='')
         cond_immune_display = ctk.CTkLabel(master=self.frame_right, text='')
@@ -106,6 +107,8 @@ class Window(ctk.CTk):
         move_speed_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter Move Speed')
         #Extra Move Speed
         extra_move_speed_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter Extra Move Speed')
+        #Skill Value
+        skill_value_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter Skill Value')
 
 #---------------#        
 #Comboboxes-----#
@@ -141,11 +144,8 @@ class Window(ctk.CTk):
         cha_combobox = ctk.CTkComboBox(master=self.frame_left, values=stats_options_combobox)
         cha_combobox.set("Random")
         #Skills
-        skill_combobox = ctk.CTkComboBox(master=self.frame_left, values=skill_options_combobox)
-        skill_combobox.set("Random")
-        #Skills Values
-        skill_value_combobox = ctk.CTkComboBox(master=self.frame_left, values=skill_value_options_combobox)
-        skill_value_combobox.set("Random")
+        skill_type_combobox = ctk.CTkComboBox(master=self.frame_left, values=skill_type_options_combobox)
+        skill_type_combobox.set("Random")
         #Vulnerabilites
         vuln_combobox = ctk.CTkComboBox(master=self.frame_left, values=vuln_options_combobox)
         vuln_combobox.set("Random")
@@ -207,10 +207,34 @@ class Window(ctk.CTk):
         #Extra Move
         extra_move_list = []
         extra_move_command = lambda: add_extra_move(extra_move_type_combobox, extra_move_speed_entry, extra_move_display, extra_move_list)
+        #Ability Score List
+        ability_score_list = []
+        
         #STR
-        str_command = lambda: add_stats(str_combobox, str_display)
+        str_command = lambda: [add_stats(str_combobox, str_display),calculate_score_modifier(str_display, ability_scores_display ,modifier_dict, ability_score_list)]
         #DEX
-        dex_command = lambda: add_stats(dex_combobox, dex_display)
+        dex_command = lambda: [add_stats(dex_combobox, dex_display),calculate_score_modifier(dex_display, ability_scores_display ,modifier_dict, ability_score_list)]
+        #CON
+        con_command = lambda: add_stats(con_combobox, con_display)
+        #INT
+        int_command = lambda: add_stats(int_combobox, int_display)
+        #WIS
+        wis_command = lambda: add_stats(wis_combobox, wis_display)
+        #CHA
+        cha_command = lambda: add_stats(cha_combobox, cha_display)
+        #Skills
+        skill_list = []
+        skill_command = lambda: add_skill(skill_type_combobox, skill_value_entry, skill_display, skill_list)
+        #Vulnerabilites
+        vuln_list = []
+        vuln_command = lambda: add_vuln(vuln_combobox, vuln_display, vuln_list)
+        #Immunities
+        immune_list = []
+        immune_command = lambda: add_immune(immune_combobox, immune_display, immune_list)
+
+        #Remove Stat
+        remove_stat_command = lambda: remove_stat(extra_move_list, 0)
+        
 
 #------------#
 #Buttons-----#
@@ -235,6 +259,23 @@ class Window(ctk.CTk):
         add_str_btn = ctk.CTkButton(master=self.frame_left, text="+", command=str_command, width=30)
         #DEX
         add_dex_btn = ctk.CTkButton(master=self.frame_left, text="+", command=dex_command, width=30)
+        #CON
+        add_con_btn = ctk.CTkButton(master=self.frame_left, text="+", command=con_command, width=30)
+        #INT
+        add_int_btn = ctk.CTkButton(master=self.frame_left, text="+", command=int_command, width=30)
+        #WIS
+        add_wis_btn = ctk.CTkButton(master=self.frame_left, text="+", command=wis_command, width=30)
+        #CHA
+        add_cha_btn = ctk.CTkButton(master=self.frame_left, text="+", command=cha_command, width=30)
+        #Skill
+        add_skill_btn = ctk.CTkButton(master=self.frame_left, text="+", command=skill_command, width=30)
+        #Vulnerabilites
+        add_vuln_btn = ctk.CTkButton(master=self.frame_left, text="+", command=vuln_command, width=30)
+        #Immunities
+        add_immune_btn = ctk.CTkButton(master=self.frame_left, text="+", command=immune_command, width=30)
+
+        #Remove Stat
+        remove_stat_btn = ctk.CTkButton(master=self.frame_left, text="Remove Stat?", command=remove_stat_command, width=30)
 
 #----------------#        
 #Grid Layout-----#
@@ -284,6 +325,40 @@ class Window(ctk.CTk):
         dex_label.grid(row=10,column=0)
         dex_combobox.grid(row=10, column=1)
         add_dex_btn.grid(row=10, column=2)
+        #Row 11
+        con_label.grid(row=11,column=0)
+        con_combobox.grid(row=11, column=1)
+        add_con_btn.grid(row=11, column=2)
+        #Row 12
+        int_label.grid(row=12,column=0)
+        int_combobox.grid(row=12, column=1)
+        add_int_btn.grid(row=12, column=2)
+        #Row 13
+        wis_label.grid(row=13,column=0)
+        wis_combobox.grid(row=13, column=1)
+        add_wis_btn.grid(row=13, column=2)
+        #Row 14
+        cha_label.grid(row=14,column=0)
+        cha_combobox.grid(row=14, column=1)
+        add_cha_btn.grid(row=14, column=2)
+        #Row 15
+        skill_type_label.grid(row=15,column=0)
+        skill_type_combobox.grid(row=15, column=1)
+        #Row 16
+        skill_value_label.grid(row=16,column=0)
+        skill_value_entry.grid(row=16, column=1)
+        add_skill_btn.grid(row=16, column=2)
+        #Row 17
+        vuln_label.grid(row=17,column=0)
+        vuln_combobox.grid(row=17, column=1)
+        add_vuln_btn.grid(row=17, column=2)
+        #Row 18
+        immune_label.grid(row=18, column=0)
+        immune_combobox.grid(row=18, column=1)
+        add_immune_btn.grid(row=18, column=2)
+
+
+        remove_stat_btn.grid()
 
 #RIGHT
         #Column 0 Labels
@@ -310,8 +385,25 @@ class Window(ctk.CTk):
         str_display.grid(row=8, column=1)
         #Row 9 
         dex_display.grid(row=9, column=1)
-
+        #Row 10 
+        con_display.grid(row=10, column=1)
+        #Row 11 
+        int_display.grid(row=11, column=1)
+        #Row 12 
+        wis_display.grid(row=12, column=1)
+        #Row 13 
+        cha_display.grid(row=13, column=1)
+        #Row 14
+        ability_scores_display.grid(row=14, column=1)
+        #Row 15
+        skill_display.grid(row=15, column=1)
+        #Row 16
+        vuln_display.grid(row=16, column=1)
+        #Row 17
+        immune_display.grid(row=17, column=1)
         
+        
+
 #Main Loop
 if __name__ == "__main__":
     window = Window()

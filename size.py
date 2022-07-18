@@ -5,7 +5,7 @@ import random
 from data.combobox_options import *
 from data.label_options import *
 
-#Add Size function
+#Add Size Function
 def add_size(size_combobox, size_display):
     size_choice = StringVar()
     size_choice = size_combobox.get()

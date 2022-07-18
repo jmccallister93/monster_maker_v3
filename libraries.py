@@ -1,3 +1,4 @@
+from buttons import *
 from monster_name import *
 from data.combobox_options import *
 from data.label_options import *
@@ -9,7 +10,11 @@ from hp_value import *
 from move_speed import *
 from extra_move import *
 from stats import *
-
+from remove_stat import *
+from skill import *
+from vulnerabilites import *
+from immunities import *
+from ability_scores import *
 
 from tkinter import StringVar
 import tkinter.messagebox

@@ -14,3 +14,4 @@ def add_stats(stats_combobox, stats_display):
         stats_display['text'] = stats_random
     else:
         stats_display['text'] = stats_choice
+    return stats_display

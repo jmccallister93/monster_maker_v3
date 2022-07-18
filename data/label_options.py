@@ -87,7 +87,7 @@ stats_options_label = [
             "29","30",
         ]
 #Skills
-skill_options_label = ["Random","None","Acrobatics","Animal Handling",
+skill_type_options_label = ["Random","None","Acrobatics","Animal Handling",
                         "Arcana","Athletics","Deception",
                         "History","Insight","Intimidation",
                         "Investigation","Medicine","Nature",
