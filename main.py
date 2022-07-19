@@ -73,13 +73,12 @@ class Window(ctk.CTk):
         hp_value_display = ctk.CTkLabel(master=self.frame_right, text='')
         move_speed_display = ctk.CTkLabel(master=self.frame_right, text='')
         extra_move_display = ctk.CTkLabel(master=self.frame_right, text='')
-        str_display = tk.Label(master=self.frame_right, text='')
-        dex_display = ctk.CTkLabel(master=self.frame_right, text='')
-        con_display = ctk.CTkLabel(master=self.frame_right, text='')
-        int_display = ctk.CTkLabel(master=self.frame_right, text='')
-        wis_display = ctk.CTkLabel(master=self.frame_right, text='')
-        cha_display = ctk.CTkLabel(master=self.frame_right, text='')
-        ability_scores_display = ctk.CTkLabel(master=self.frame_right, text='')
+        str_display = tk.Label(master=self.frame_right, text='', bg='#2c2c2c', fg='#ffffff')
+        dex_display = tk.Label(master=self.frame_right, text='', bg='#2c2c2c', fg='#ffffff')
+        con_display = tk.Label(master=self.frame_right, text='', bg='#2c2c2c', fg='#ffffff')
+        int_display = tk.Label(master=self.frame_right, text='', bg='#2c2c2c', fg='#ffffff')
+        wis_display = tk.Label(master=self.frame_right, text='', bg='#2c2c2c', fg='#ffffff')
+        cha_display = tk.Label(master=self.frame_right, text='', bg='#2c2c2c', fg='#ffffff')
         skill_display = ctk.CTkLabel(master=self.frame_right, text='')
         vuln_display = ctk.CTkLabel(master=self.frame_right, text='')
         immune_display = ctk.CTkLabel(master=self.frame_right, text='')
@@ -207,21 +206,18 @@ class Window(ctk.CTk):
         #Extra Move
         extra_move_list = []
         extra_move_command = lambda: add_extra_move(extra_move_type_combobox, extra_move_speed_entry, extra_move_display, extra_move_list)
-        #Ability Score List
-        ability_score_list = []
-        
         #STR
-        str_command = lambda: [add_stats(str_combobox, str_display),calculate_score_modifier(str_display, ability_scores_display ,modifier_dict, ability_score_list)]
+        str_command = lambda: add_stats(str_combobox, str_display, modifier_dict)
         #DEX
-        dex_command = lambda: [add_stats(dex_combobox, dex_display),calculate_score_modifier(dex_display, ability_scores_display ,modifier_dict, ability_score_list)]
+        dex_command = lambda: add_stats(dex_combobox, dex_display, modifier_dict)
         #CON
-        con_command = lambda: add_stats(con_combobox, con_display)
+        con_command = lambda: add_stats(con_combobox, con_display, modifier_dict)
         #INT
-        int_command = lambda: add_stats(int_combobox, int_display)
+        int_command = lambda: add_stats(int_combobox, int_display, modifier_dict)
         #WIS
-        wis_command = lambda: add_stats(wis_combobox, wis_display)
+        wis_command = lambda: add_stats(wis_combobox, wis_display, modifier_dict)
         #CHA
-        cha_command = lambda: add_stats(cha_combobox, cha_display)
+        cha_command = lambda: add_stats(cha_combobox, cha_display, modifier_dict)
         #Skills
         skill_list = []
         skill_command = lambda: add_skill(skill_type_combobox, skill_value_entry, skill_display, skill_list)
@@ -394,13 +390,11 @@ class Window(ctk.CTk):
         #Row 13 
         cha_display.grid(row=13, column=1)
         #Row 14
-        ability_scores_display.grid(row=14, column=1)
+        skill_display.grid(row=14, column=1)
         #Row 15
-        skill_display.grid(row=15, column=1)
+        vuln_display.grid(row=15, column=1)
         #Row 16
-        vuln_display.grid(row=16, column=1)
-        #Row 17
-        immune_display.grid(row=17, column=1)
+        immune_display.grid(row=16, column=1)
         
         
 

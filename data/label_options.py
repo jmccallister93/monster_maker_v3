@@ -207,7 +207,6 @@ monster_stat_list = [
                         "INT",
                         "WIS",
                         "CHA",
-                        "Saves",
                         "Skills",
                         "Vulnerabilities",
                         "Immunities",
