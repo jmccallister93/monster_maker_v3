@@ -1,6 +1,8 @@
 from libraries import *
 import customtkinter as ctk
 import tkinter as tk
+from data.combobox_options import *
+from data.label_options import *
 
 #Main Class
 class Window(ctk.CTk):
@@ -244,8 +246,10 @@ class Window(ctk.CTk):
         lang_command =  lambda: add_lang(lang_combobox, lang_display, lang_list)
         #Spells
         spell_list = []
-        spell_command = lambda: add_spell(spell_combobox, spell_display, spell_list)
-        spell_display.bind("<Button-1>",lambda e: callback("https://www.dndbeyond.com/spells/fireball"))
+        new_window = lambda: NewWindow(master)
+        spell_command = new_window
+        # spell_command = lambda: add_spell(spell_combobox, spell_display, spell_list)
+        # spell_display.bind("<Button-1>",lambda e: callback("https://www.dndbeyond.com/spells/fireball"))
 
         #Remove Stat
         remove_stat_command = lambda: remove_stat(extra_move_list, 0)
@@ -299,7 +303,7 @@ class Window(ctk.CTk):
         #Language 
         add_lang_btn = ctk.CTkButton(master=self.frame_left, text="+", command=lang_command, width=30)
         #Spells
-        add_spell_btn = ctk.CTkButton(master=self.frame_left, text="+", command=spell_command, width=30)
+        add_spell_btn = ctk.CTkButton(master=self.frame_left, text="Search Spells", command=spell_command, width=140)
 
         #Remove Stat
         remove_stat_btn = ctk.CTkButton(master=self.frame_left, text="Remove Stat?", command=remove_stat_command, width=30)
@@ -411,8 +415,7 @@ class Window(ctk.CTk):
         special_trait_combobox.grid(row=25, column=1)
         #Row 26
         spell_label.grid(row=26, column=0)
-        spell_combobox.grid(row=26, column=1)
-        add_spell_btn.grid(row=26, column=2)
+        add_spell_btn.grid(row=26, column=1)
 
 
         remove_stat_btn.grid()
@@ -472,8 +475,11 @@ class Window(ctk.CTk):
         spell_display.grid(row=26, column=1)
         
         
+        
 
 #Main Loop
 if __name__ == "__main__":
     window = Window()
     window.mainloop()
+    window.quit()
+    
