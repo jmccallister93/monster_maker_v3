@@ -187,7 +187,7 @@ lair_action_options_label = ["Difficult Terrain", "Obscure Sight",
                                             "Free Spell", "Free Ability"]
 
 #Spells TODO
-pass    
+spell_options_label = ["Fireball"]    
 
 #-----------------------------#
 #---Labels for Right Frame----#

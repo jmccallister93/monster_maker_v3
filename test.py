@@ -1,7 +1,14 @@
-from main import *
-from libraries import *
+import pandas as pd
 
-window = Window()
+spell_dict = {
+    "Fireball":"https://www.dndbeyond.com/spells/fireball",
+    "Alarm":"https://www.dndbeyond.com/spells/alarm",
+    "Catapult":"https://www.dndbeyond.com/spells/catapult"
+    }
 
-test_label = ctk.CTkLabel(master=window.frame_left, text='Test')
-test_label.grid(row=0, column=0)
+def dict_value(dictionary):
+    for key, value in dict.items():
+        if key == "Fireball":
+            print(value)
+
+df = pd.DataFrame.from_dict(spell_dict)

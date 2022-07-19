@@ -61,7 +61,7 @@ class Window(ctk.CTk):
         action_label = ctk.CTkLabel(master=self.frame_left, text="Actions Option")
         legendary_action_label = ctk.CTkLabel(master=self.frame_left, text="Legendary Actions Option")
         lair_action_label = ctk.CTkLabel(master=self.frame_left, text="Lair Actions Option")
-        spells_label = ctk.CTkLabel(master=self.frame_left, text="Spells Option")
+        spell_label = ctk.CTkLabel(master=self.frame_left, text="Spells Option")
 
         
         #Right Frame Labels
@@ -87,11 +87,11 @@ class Window(ctk.CTk):
         legendary_resist_display = ctk.CTkLabel(master=self.frame_right, text='')
         sense_display = ctk.CTkLabel(master=self.frame_right, text='')
         lang_display = ctk.CTkLabel(master=self.frame_right, text='')
-        special_traits_display = ctk.CTkLabel(master=self.frame_right, text='')
+        special_traits_display = tk.Label(master=self.frame_right, text='')
         action_display = ctk.CTkLabel(master=self.frame_right, text='')
         legendary_action_display = ctk.CTkLabel(master=self.frame_right, text='')
         lair_action_display = ctk.CTkLabel(master=self.frame_right, text='')
-        spells_display = ctk.CTkLabel(master=self.frame_right, text='')
+        spell_display = ctk.CTkLabel(master=self.frame_right, text='')
 #------------#
 #Entries-----#
 #------------#
@@ -183,7 +183,7 @@ class Window(ctk.CTk):
         lair_action_combobox = ctk.CTkComboBox(master=self.frame_left, values=lair_action_options_combobox)
         lair_action_combobox.set("Random")
         #Spells TODO
-        spell_combobox = ctk.CTkComboBox(master=self.frame_left, values='spell_options_combobox')
+        spell_combobox = ctk.CTkComboBox(master=self.frame_left, values=spell_options_combobox)
         spell_combobox.set("Random")
 
 
@@ -242,6 +242,10 @@ class Window(ctk.CTk):
         #Languages
         lang_list = []
         lang_command =  lambda: add_lang(lang_combobox, lang_display, lang_list)
+        #Spells
+        spell_list = []
+        spell_command = lambda: add_spell(spell_combobox, spell_display, spell_list)
+        spell_display.bind("<Button-1>",lambda e: callback("https://www.dndbeyond.com/spells/fireball"))
 
         #Remove Stat
         remove_stat_command = lambda: remove_stat(extra_move_list, 0)
@@ -294,6 +298,8 @@ class Window(ctk.CTk):
         add_sense_btn = ctk.CTkButton(master=self.frame_left, text="+", command=sense_command, width=30)
         #Language 
         add_lang_btn = ctk.CTkButton(master=self.frame_left, text="+", command=lang_command, width=30)
+        #Spells
+        add_spell_btn = ctk.CTkButton(master=self.frame_left, text="+", command=spell_command, width=30)
 
         #Remove Stat
         remove_stat_btn = ctk.CTkButton(master=self.frame_left, text="Remove Stat?", command=remove_stat_command, width=30)
@@ -400,6 +406,13 @@ class Window(ctk.CTk):
         lang_label.grid(row=24, column=0)
         lang_combobox.grid(row=24, column=1)
         add_lang_btn.grid(row=24, column=2)
+        #Row 25
+        special_traits_label.grid(row=25, column=0)
+        special_trait_combobox.grid(row=25, column=1)
+        #Row 26
+        spell_label.grid(row=26, column=0)
+        spell_combobox.grid(row=26, column=1)
+        add_spell_btn.grid(row=26, column=2)
 
 
         remove_stat_btn.grid()
@@ -453,6 +466,10 @@ class Window(ctk.CTk):
         sense_display.grid(row=20, column=1)
         #Row 21
         lang_display.grid(row=21, column=1)
+        #Row 22
+        special_traits_display.grid(row=22, column=1)
+        #Row 26
+        spell_display.grid(row=26, column=1)
         
         
 

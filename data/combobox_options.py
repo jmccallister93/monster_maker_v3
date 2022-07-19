@@ -118,7 +118,7 @@ lang_options_combobox = ["Random","Common","Dwarvish",
                         ]
 
 #Special Traits TODO
-pass
+special_traits_options_combobox = []
 
 #Actions
 action_options_combobox = ["Random", "Bite", "Bite & Shake","Call / Howl","Claw","Death from Above",
@@ -145,4 +145,4 @@ lair_action_options_combobox = ["Random", "Difficult Terrain", "Obscure Sight",
                                             "Free Spell", "Free Ability"]
 
 #Spells TODO
-pass                                           
+spell_options_combobox = ["Fireball"]                                          
