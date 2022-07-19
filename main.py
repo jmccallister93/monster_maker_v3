@@ -5,7 +5,7 @@ import tkinter as tk
 #Main Class
 class Window(ctk.CTk):
     WIDTH = 700 
-    HEIGHT = 750
+    HEIGHT = 900
     
     def __init__(self) -> None:
         super().__init__()
@@ -54,7 +54,7 @@ class Window(ctk.CTk):
         cond_immune_label = ctk.CTkLabel(master=self.frame_left, text="Condition Immunity Option")
         resist_label = ctk.CTkLabel(master=self.frame_left, text="Resistance Option")
         legendary_resist_label = ctk.CTkLabel(master=self.frame_left, text="Legendary Res. Option")
-        senses_label = ctk.CTkLabel(master=self.frame_left, text="Senses Option")
+        sense_type_label = ctk.CTkLabel(master=self.frame_left, text="Senses Option")
         sense_value_label = ctk.CTkLabel(master=self.frame_left, text="Sense Value Option")
         lang_label = ctk.CTkLabel(master=self.frame_left, text="Languages Option")
         special_traits_label = ctk.CTkLabel(master=self.frame_left, text="Special Traits Option")
@@ -85,8 +85,7 @@ class Window(ctk.CTk):
         cond_immune_display = ctk.CTkLabel(master=self.frame_right, text='')
         resist_display = ctk.CTkLabel(master=self.frame_right, text='')
         legendary_resist_display = ctk.CTkLabel(master=self.frame_right, text='')
-        senses_display = ctk.CTkLabel(master=self.frame_right, text='')
-        sense_value_display = ctk.CTkLabel(master=self.frame_right, text='')
+        sense_display = ctk.CTkLabel(master=self.frame_right, text='')
         lang_display = ctk.CTkLabel(master=self.frame_right, text='')
         special_traits_display = ctk.CTkLabel(master=self.frame_right, text='')
         action_display = ctk.CTkLabel(master=self.frame_right, text='')
@@ -108,6 +107,8 @@ class Window(ctk.CTk):
         extra_move_speed_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter Extra Move Speed')
         #Skill Value
         skill_value_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter Skill Value')
+        #Sense Value
+        sense_value_entry = ctk.CTkEntry(master=self.frame_left, placeholder_text='Enter Sense Value')
 
 #---------------#        
 #Comboboxes-----#
@@ -161,8 +162,8 @@ class Window(ctk.CTk):
         legendary_resist_combobox = ctk.CTkComboBox(master=self.frame_left, values=legendary_resist_options_combobox)
         legendary_resist_combobox.set("Random")
         #Sense
-        sense_combobox = ctk.CTkComboBox(master=self.frame_left, values=sense_options_combobox)
-        sense_combobox.set("Random")
+        sense_type_combobox = ctk.CTkComboBox(master=self.frame_left, values=sense_type_options_combobox)
+        sense_type_combobox.set("Random")
         #Sense Value
         sense_value_combobox = ctk.CTkComboBox(master=self.frame_left, values=sense_value_options_combobox)
         sense_value_combobox.set("Random")
@@ -227,6 +228,20 @@ class Window(ctk.CTk):
         #Immunities
         immune_list = []
         immune_command = lambda: add_immune(immune_combobox, immune_display, immune_list)
+        #Condition Immunities
+        cond_immune_list = []
+        cond_immune_command = lambda: add_cond_immune(cond_immune_combobox, cond_immune_display, cond_immune_list)
+        #Resistances 
+        resist_list = []
+        resist_command = lambda: add_resist(resist_combobox, resist_display, resist_list)
+        #Legendary Resistances
+        legendary_resist_command = lambda: add_legendary_resist(legendary_resist_combobox, legendary_resist_display)
+        #Senses
+        sense_list = []
+        sense_command = lambda: add_sense(sense_type_combobox, sense_value_entry, sense_display, sense_list)
+        #Languages
+        lang_list = []
+        lang_command =  lambda: add_lang(lang_combobox, lang_display, lang_list)
 
         #Remove Stat
         remove_stat_command = lambda: remove_stat(extra_move_list, 0)
@@ -269,6 +284,16 @@ class Window(ctk.CTk):
         add_vuln_btn = ctk.CTkButton(master=self.frame_left, text="+", command=vuln_command, width=30)
         #Immunities
         add_immune_btn = ctk.CTkButton(master=self.frame_left, text="+", command=immune_command, width=30)
+        #Condition Immunities
+        add_cond_immune_btn = ctk.CTkButton(master=self.frame_left, text="+", command=cond_immune_command, width=30)
+        #Resistances
+        add_resist_btn = ctk.CTkButton(master=self.frame_left, text="+", command=resist_command, width=30)
+        #Legendary Resistances
+        add_legendary_resist_btn = ctk.CTkButton(master=self.frame_left, text="+", command=legendary_resist_command, width=30)
+        #Senses
+        add_sense_btn = ctk.CTkButton(master=self.frame_left, text="+", command=sense_command, width=30)
+        #Language 
+        add_lang_btn = ctk.CTkButton(master=self.frame_left, text="+", command=lang_command, width=30)
 
         #Remove Stat
         remove_stat_btn = ctk.CTkButton(master=self.frame_left, text="Remove Stat?", command=remove_stat_command, width=30)
@@ -352,6 +377,29 @@ class Window(ctk.CTk):
         immune_label.grid(row=18, column=0)
         immune_combobox.grid(row=18, column=1)
         add_immune_btn.grid(row=18, column=2)
+        #Row 19 
+        cond_immune_label.grid(row=19, column=0)
+        cond_immune_combobox.grid(row=19, column=1)
+        add_cond_immune_btn.grid(row=19, column=2)
+        #Row 20 
+        resist_label.grid(row=20, column=0)
+        resist_combobox.grid(row=20, column=1)
+        add_resist_btn.grid(row=20, column=2)
+        #Row 21 
+        legendary_resist_label.grid(row=21, column=0)
+        legendary_resist_combobox.grid(row=21, column=1)
+        add_legendary_resist_btn.grid(row=21, column=2)
+        #Row 22 
+        sense_type_label.grid(row=22, column=0)
+        sense_type_combobox.grid(row=22, column=1)
+        #Row 23
+        sense_value_label.grid(row=23, column=0)
+        sense_value_entry.grid(row=23, column=1)
+        add_sense_btn.grid(row=23, column=2)
+        #Row 24 
+        lang_label.grid(row=24, column=0)
+        lang_combobox.grid(row=24, column=1)
+        add_lang_btn.grid(row=24, column=2)
 
 
         remove_stat_btn.grid()
@@ -395,6 +443,16 @@ class Window(ctk.CTk):
         vuln_display.grid(row=15, column=1)
         #Row 16
         immune_display.grid(row=16, column=1)
+        #Row 17 
+        cond_immune_display.grid(row=17, column=1)
+        #Row 18 
+        resist_display.grid(row=18, column=1)
+        #Row 19 
+        legendary_resist_display.grid(row=19, column=1)
+        #Row 20 
+        sense_display.grid(row=20, column=1)
+        #Row 21
+        lang_display.grid(row=21, column=1)
         
         
 

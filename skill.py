@@ -6,7 +6,7 @@ from data.combobox_options import *
 from data.label_options import *
 import tkinter.messagebox
 
-#Add Extra Move function
+#Add Skill function
 def add_skill(skill_type_combobox, skill_value_entry, skill_display, skill_list):
     
     #Type

@@ -92,8 +92,13 @@ resist_options_combobox = ["Random","Acid","Cold","Fire",
                         "Magical Slashing","Magical Piercing",
                         ]
 
+#Legendary Resistances
+legendary_resist_options_combobox = ["Random", "1","2","3",
+                                    "4", "5", "6", "7",
+                                    "8", "9", "10"]
+
 #Senses
-sense_options_combobox = ["Random","Darkvision","Blindsight","Truesight","Tremorsense"]
+sense_type_options_combobox = ["Random","Darkvision","Blindsight","Truesight","Tremorsense"]
 
 #Senses Value
 sense_value_options_combobox = ["Random",
@@ -130,10 +135,7 @@ legendary_action_options_combobox = ["Random", "Difficult Terrain", "Obscure Sig
                                             "Effect on Exit", "Free Action", "Free Reaction",
                                             "Free Spell", "Free Ability"]
 
-#Legendary Resistances TODO
-legendary_resist_options_combobox = ["Random", "1","2","3",
-                                    "4", "5", "6", "7",
-                                    "8", "9", "10"]
+
 
 #Lair Action
 lair_action_options_combobox = ["Random", "Difficult Terrain", "Obscure Sight",

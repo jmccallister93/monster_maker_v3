@@ -121,7 +121,7 @@ immune_options_label = ["Acid","Cold","Fire",
                         ]
 
 #Condition Immunities
-cond_immune_options_combobox = ["Blinded","Charmed",
+cond_immune_options_label = ["Blinded","Charmed",
                                 "Deafened", "Frightened", "Grappled",
                                 "Incapacitaed", "Paralyzed", "Petrified",
                                 "Poisoned", "Prone", "Restrained",
@@ -136,8 +136,13 @@ resist_options_label = ["Acid","Cold","Fire",
                         "Magical Slashing","Magical Piercing",
                         ]
 
+#Legendary Resistances 
+legendary_resist_options_label = ["1", "2", "3",
+                                "4", "5", "6", "7",
+                                "8", "9", "10"]
+
 #Senses
-sense_options_label = ["Random","Darkvision","Blindsight","Truesight","Tremorsense"]
+sense_type_options_label = ["Darkvision","Blindsight","Truesight","Tremorsense"]
 
 #Senses Value
 sense_value_options_label = [
@@ -174,11 +179,6 @@ legendary_action_options_label = ["Difficult Terrain", "Obscure Sight",
                                             "Effect on Exit", "Free Action", "Free Reaction",
                                             "Free Spell", "Free Ability"]
 
-#Legendary Resistances TODO
-legendary_resist_options_label = ["1", "2", "3",
-                                "4", "5", "6", "7",
-                                "8", "9", "10"]
-
 #Lair Action
 lair_action_options_label = ["Difficult Terrain", "Obscure Sight",
                                             "Snaring", "Knockdown", "Lighting Change", 
@@ -212,6 +212,7 @@ monster_stat_list = [
                         "Immunities",
                         "Condition Immunities",
                         "Resistances",
+                        "Legendary Resistances",
                         "Senses",
                         "Languages",
                         "Special Traits",

@@ -14,8 +14,11 @@ from remove_stat import *
 from skill import *
 from vulnerabilites import *
 from immunities import *
-from ability_scores import *
-
+from condition_immunities import *
+from resistances import *
+from legendary_resistances import *
+from sense import *
+from language import *
 
 from tkinter import StringVar
 import tkinter.messagebox
