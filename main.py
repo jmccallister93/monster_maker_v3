@@ -184,10 +184,6 @@ class Window(ctk.CTk):
         #Lair Actions
         lair_action_combobox = ctk.CTkComboBox(master=self.frame_left, values=lair_action_options_combobox)
         lair_action_combobox.set("Random")
-        #Spells TODO
-        spell_combobox = ctk.CTkComboBox(master=self.frame_left, values=spell_options_combobox)
-        spell_combobox.set("Random")
-
 
 #--------------#
 #Functions-----#
@@ -304,6 +300,7 @@ class Window(ctk.CTk):
         add_lang_btn = ctk.CTkButton(master=self.frame_left, text="+", command=lang_command, width=30)
         #Spells
         add_spell_btn = ctk.CTkButton(master=self.frame_left, text="Search Spells", command=spell_command, width=140)
+        random_spell_btn = ctk.CTkButton(master=self.frame_left, text="+", width=30)
 
         #Remove Stat
         remove_stat_btn = ctk.CTkButton(master=self.frame_left, text="Remove Stat?", command=remove_stat_command, width=30)
@@ -416,6 +413,7 @@ class Window(ctk.CTk):
         #Row 26
         spell_label.grid(row=26, column=0)
         add_spell_btn.grid(row=26, column=1)
+        random_spell_btn.grid(row=26, column=2)
 
 
         remove_stat_btn.grid()
@@ -481,5 +479,5 @@ class Window(ctk.CTk):
 if __name__ == "__main__":
     window = Window()
     window.mainloop()
-    window.quit()
+
     
